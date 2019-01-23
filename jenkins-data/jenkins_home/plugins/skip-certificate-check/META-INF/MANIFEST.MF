@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: kohsuke
+Build-Jdk: 1.6.0_20
+Extension-Name: skip-certificate-check
+Implementation-Title: skip-certificate-check
+Implementation-Version: 1.0
+Group-Id: org.jenkins-ci.plugins
+Short-Name: skip-certificate-check
+Long-Name: skip-certificate-check
+Url: https://wiki.jenkins-ci.org/display/JENKINS/Skip+Certificate+Chec
+ k+plugin
+Plugin-Version: 1.0
+Hudson-Version: 1.399
+Plugin-Developers: 
+

@@ -1,0 +1,71 @@
+version: '2.1'
+
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins-ansible
+#    build:
+#      context: jenkins-ansible
+    ports:
+      - "8050:8080"
+    volumes:
+      - $PWD/jenkins_home:/var/jenkins_home
+    networks:
+      - net
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+#    build:
+#      context: centos
+    volumes:
+      - $PWD/script.sh:/tmp/script.sh
+    networks:
+      - net
+  db_host:
+    container_name: db
+    image: mysql:5.7
+    environment:
+      - "MYSQL_ROOT_PASSWORD=1234"
+    volumes:
+      - $PWD/db_data:/var/lib/mysql
+    networks:
+      - net
+  web:
+    container_name: web
+    image: ansible-web
+#    build:
+#      context: jenkins-ansible/web 
+    ports:
+      - "50:80"
+    networks:
+      - net
+  salt-master:
+    image: my-saltmaster-img
+    build:
+      context: salt-netdev-docker
+    hostname: salt-master
+    container_name: salt-master
+    environment:
+      - LOG_LEVEL
+    volumes:
+      - ./salt-netdev-docker/master:/etc/salt/master
+      - ./salt-netdev-docker/pillar/:/etc/salt/pillar/
+      - ./salt-netdev-docker/states/:/etc/salt/states/
+    networks:
+      - net
+  salt-proxy:
+    image: mirceaulinic/salt-proxy:2017.7.5
+    hostname: ${PROXYID}
+    container_name: salt-proxy-${PROXYID}
+    volumes:
+      - ./salt-netdev-docker/proxy:/etc/salt/proxy
+    environment:
+      - LOG_LEVEL
+      - PROXYID
+    depends_on:
+      - salt-master
+    networks:
+      - net
+networks:
+  net:
+

@@ -1,0 +1,15 @@
+version: '3'
+services:
+  jenkins:
+    container_name: salt-master
+    image: salt-master
+    build:
+      context: .
+    expose:
+      - "4505"
+      - "4506"
+    networks:
+      - net
+networks:
+  net:
+

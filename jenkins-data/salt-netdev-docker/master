@@ -1,0 +1,28 @@
+open_mode: true
+
+pillar_roots:
+  base:
+    - /etc/salt/pillar
+
+file_roots:
+  base:
+    - /etc/salt
+    - /etc/salt/states
+
+external_auth:
+  pam:
+    jenkins:
+      - test.*
+      - pkg.*
+      - cmd.*
+      - state.*
+      - '@runner'
+
+rest_cherrypy:
+  port: 8080
+  host: 172.21.0.3 
+  ssl_crt: /etc/pki/tls/certs/localhost.crt
+  ssl_key: /etc/pki/tls/certs/localhost.key
+  expire_responses: False
+
+rest_timeout: 7200

@@ -1,0 +1,8 @@
+Started by user [8mha:////4KR3zNGNQJ4ZrVO74I9j8IEPwZDOLWQQCovjoeBY+0OoAAAAmh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzeEgY+/dLi1CL9gqLMysS87EQAyZ+jlsMAAAA=[0mPriyanka Jare
+Building in workspace /var/jenkins_home/workspace/salt-test
+Running jid: 20190116094755922039
+Waiting for 1 minions
+1 minions are done
+Response on cmd.run 'uptime' for dummy:
+[{"dummy": {"return": "/bin/sh: 1: uptime: not found"}}]
+Finished: SUCCESS

@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: mchug
+Build-Jdk: 1.8.0_191
+Extension-Name: saltstack
+Specification-Title: Allows Jenkins to send SaltStack messages
+Implementation-Title: saltstack
+Implementation-Version: 3.2.1
+Group-Id: org.jenkins-ci.plugins
+Short-Name: saltstack
+Long-Name: Jenkins SaltStack plugin
+Url: https://wiki.jenkins-ci.org/display/JENKINS/saltstack-plugin
+Plugin-Version: 3.2.1
+Hudson-Version: 1.642.3
+Jenkins-Version: 1.642.3
+Plugin-Dependencies: maven-plugin:2.14,workflow-step-api:2.3,credentia
+ ls:2.1.8,structs:1.3
+Plugin-Developers: Christian McHugh:mchugh19:mchugh19@hotmail.com
+

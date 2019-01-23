@@ -1,0 +1,56 @@
+version: '2'
+
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins-ansible
+    build:
+      context: jenkins-ansible
+    ports:
+      - "8050:8080"
+    volumes:
+      - $PWD/jenkins_home:/var/jenkins_home
+    networks:
+      static-network:
+        ipv4_address: 172.21.0.2
+  salt-master:
+    image: my-saltmaster-img
+    build:
+      context: salt-netdev-docker
+    hostname: salt-master
+    container_name: salt-master
+    environment:
+      - LOG_LEVEL
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./salt-netdev-docker/master:/etc/salt/master
+      - ./salt-netdev-docker/pillar/:/etc/salt/pillar/
+      - ./salt-netdev-docker/states/:/etc/salt/states/
+    networks:
+      static-network:
+        ipv4_address: 172.21.0.3
+  salt-proxy:
+    image: mirceaulinic/salt-proxy:2017.7.5
+    hostname: ${PROXYID}
+    container_name: salt-proxy-${PROXYID}
+    volumes:
+      - ./salt-netdev-docker/proxy:/etc/salt/proxy
+    stdin_open: true
+    tty: true
+    environment:
+      - LOG_LEVEL
+      - PROXYID
+    depends_on:
+      - salt-master
+    networks:
+      static-network:
+        ipv4_address: 172.21.0.4
+networks:
+  static-network:
+    ipam:
+      #      driver: default
+      config:
+        - subnet: 172.21.0.0/16
+          gateway: 172.21.0.1 
+          #command: /bin/bash

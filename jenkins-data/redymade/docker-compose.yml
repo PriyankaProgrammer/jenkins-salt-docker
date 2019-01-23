@@ -1,0 +1,13 @@
+version: '3'
+services:
+  centos-salt:
+    container_name: salt-test
+    image: salt-salt
+    build:
+      context: .
+    privileged: true
+    networks:
+      - net
+networks:
+  net:
+
